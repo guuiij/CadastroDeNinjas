@@ -19,11 +19,13 @@ public class MissoesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String nome;
 
+    @Column
     private String dificuldade;
 
-    // @OneToMany uma missão pode ter varios ninjas
+    // Uuma missão pode ter varios ninjas
     @OneToMany(mappedBy = "missoes") //Mapeou e conectou através de uma chave estrangeira
     private List<NinjaModel> ninjas; //Para acessar a tabela de ninja
 
