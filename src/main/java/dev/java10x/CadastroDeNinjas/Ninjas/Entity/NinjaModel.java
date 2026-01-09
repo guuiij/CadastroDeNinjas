@@ -27,6 +27,9 @@ public class NinjaModel {
     @Column (name = "idade")
     private int idade;
 
+    @Column (name = "IMG_URL")
+    private int imagemURL;
+
     // @ManyToOne um ninja tem uma única missão.
     @ManyToOne
     // Juntar as duas colunas ( gera uma terceira coluna -> "missoes_id" )
