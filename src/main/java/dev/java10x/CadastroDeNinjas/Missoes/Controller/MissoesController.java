@@ -1,10 +1,20 @@
 package dev.java10x.CadastroDeNinjas.Missoes.Controller;
 
+import dev.java10x.CadastroDeNinjas.Missoes.Entity.MissoesModel;
+import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/missoes")
 public class MissoesController {
+
+    private MissoesService missoesService;
+
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
+    }
 
     @GetMapping("hello")
     public String boasVindas(){
@@ -17,10 +27,10 @@ public class MissoesController {
         return "Missão criada";
     }
 
-    // GET -- Mandar uma requisição para mostrar as missões
+    // GET -- Mandar uma requisição para mostrar todas as missões
     @GetMapping("/listar")
-    public String listarTodasAsMissoes(){
-        return "Mostrar Missões";
+    public List<MissoesModel> listarTodasAsMissoes(){
+        return missoesService.listarMissoes();
     }
 
     @GetMapping("/listarID")
