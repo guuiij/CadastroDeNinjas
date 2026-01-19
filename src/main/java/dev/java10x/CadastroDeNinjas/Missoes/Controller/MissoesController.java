@@ -33,9 +33,10 @@ public class MissoesController {
         return missoesService.listarMissoes();
     }
 
-    @GetMapping("/listarID")
-    public String listarMissaoPorId(){
-        return "Mostrar Missão por ID";
+    @GetMapping("/listar/{id}")
+    public MissoesModel listarMissaoPorId(@PathVariable Long id){
+        return  missoesService.listarMissaoPorId(id);
+
     }
 
     // PUT -- Mandar uma requisição para alterar as missões
