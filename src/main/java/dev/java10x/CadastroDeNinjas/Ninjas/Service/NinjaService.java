@@ -10,37 +10,40 @@ import java.util.Optional;
 @Service
 public class NinjaService {
 
-        private NinjaRepository ninjaRepository;
+    private NinjaRepository ninjaRepository;
 
     public NinjaService(NinjaRepository ninjaRepository) {
         this.ninjaRepository = ninjaRepository;
     }
 
     // Listar todos os meus ninjas
-    public List<NinjaModel> listarNinjas(){
-        return  ninjaRepository.findAll();
+    public List<NinjaModel> listarNinjas() {
+        return ninjaRepository.findAll();
     }
 
     // Listar todos os meus ninjas por ID
-        public NinjaModel listarNinjaPorId(Long id){
-            Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
-            return ninjaPorId.orElse(null);
+    public NinjaModel listarNinjaPorId(Long id) {
+        Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
+        return ninjaPorId.orElse(null);
     }
 
     // Criar ninja
-    public NinjaModel criarNinja(NinjaModel ninja){
-        return  ninjaRepository.save(ninja);
+    public NinjaModel criarNinja(NinjaModel ninja) {
+        return ninjaRepository.save(ninja);
     }
 
     // Deletar o ninja - Tem que ser um metodo VOID
-    public void deletarNinjaPorId(Long id){
+    public void deletarNinjaPorId(Long id) {
         ninjaRepository.deleteById(id);
     }
 
     // Alterar/Atualizar o Ninja
-    public NinjaModel alterarNinja(Long id){
-        Optional<NinjaModel> ninjaAlterar = ninjaRepository.findById(id);
-        return  ninjaAlterar
+    public NinjaModel alterarNinja(Long id, NinjaModel atualizarNinja) {
+        if (ninjaRepository.existsById(id)) {
+            atualizarNinja.setId(id);
+            return ninjaRepository.save(atualizarNinja);
+        }
+        return null;
     }
 
 
