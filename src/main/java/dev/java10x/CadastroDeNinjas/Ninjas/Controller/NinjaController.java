@@ -30,7 +30,7 @@ public class NinjaController {
     // Mostrar todos os ninjas (READ)
     @GetMapping("/listar")
     public List<NinjaModel> listarTodosOsNInjas() {
-        return  ninjaService.listarNinjas();
+        return ninjaService.listarNinjas();
     }
 
     // Mostrar Ninja por id (READ)
@@ -46,9 +46,9 @@ public class NinjaController {
     }
 
     // Deletar Ninja (DELETE)
-    @DeleteMapping("/deletarID")
-    public String deletarNInjaPorId() {
-        return "Ninja deletado por ID";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarNInjaPorId(@PathVariable Long id) {
+        ninjaService.deletarNinjaPorId(id);
     }
 
 

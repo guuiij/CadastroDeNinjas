@@ -17,37 +17,37 @@ public class MissoesController {
     }
 
     @GetMapping("hello")
-    public String boasVindas(){
+    public String boasVindas() {
         return "Essa é minha missao";
     }
 
     // GET -- Mandar uma requisição para criar as missões
     @PostMapping("/criar")
-    public MissoesModel criarMissao(@RequestBody MissoesModel missao){
+    public MissoesModel criarMissao(@RequestBody MissoesModel missao) {
         return missoesService.criarMissao(missao);
     }
 
     // GET -- Mandar uma requisição para mostrar todas as missões
     @GetMapping("/listar")
-    public List<MissoesModel> listarTodasAsMissoes(){
+    public List<MissoesModel> listarTodasAsMissoes() {
         return missoesService.listarMissoes();
     }
 
     @GetMapping("/listar/{id}")
-    public MissoesModel listarMissaoPorId(@PathVariable Long id){
-        return  missoesService.listarMissaoPorId(id);
+    public MissoesModel listarMissaoPorId(@PathVariable Long id) {
+        return missoesService.listarMissaoPorId(id);
 
     }
 
     // PUT -- Mandar uma requisição para alterar as missões
     @PutMapping("/alterarID")
-    public String alterarMissaoPorId(){
+    public String alterarMissaoPorId() {
         return "Alterar Missão por ID";
     }
 
     // DELETE -- Mandar uma requisição para deletar as missões
-    @DeleteMapping("/deletarID")
-    public String deletarMissaoPorID(){
-        return  "Missão deletada por ID";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarMissaoPorID(@PathVariable Long id) {
+        missoesService.deletarMissaoPorID(id);
     }
 }
