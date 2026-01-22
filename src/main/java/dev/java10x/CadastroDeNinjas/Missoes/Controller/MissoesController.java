@@ -2,6 +2,7 @@ package dev.java10x.CadastroDeNinjas.Missoes.Controller;
 
 import dev.java10x.CadastroDeNinjas.Missoes.Entity.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesService;
+import dev.java10x.CadastroDeNinjas.Ninjas.Entity.NinjaModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,10 +40,10 @@ public class MissoesController {
 
     }
 
-    // PUT -- Mandar uma requisição para alterar as missões
-    @PutMapping("/alterarID")
-    public String alterarMissaoPorId() {
-        return "Alterar Missão por ID";
+    // PUT -- Mandar uma requisição para alterar a missão
+    @PutMapping("/alterar/{id}")
+    public MissoesModel alterarMissaoPorId(@PathVariable Long id, @RequestBody MissoesModel atualizarMissao) {
+        return missoesService.alterarMissaoPorId(id, atualizarMissao);
     }
 
     // DELETE -- Mandar uma requisição para deletar as missões

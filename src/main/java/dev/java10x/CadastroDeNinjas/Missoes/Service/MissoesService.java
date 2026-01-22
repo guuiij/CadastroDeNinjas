@@ -2,9 +2,8 @@ package dev.java10x.CadastroDeNinjas.Missoes.Service;
 
 import dev.java10x.CadastroDeNinjas.Missoes.Entity.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.Repository.MissoesRepository;
+import dev.java10x.CadastroDeNinjas.Ninjas.Entity.NinjaModel;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +34,17 @@ public class MissoesService {
     }
 
     // Deletar missão por ID
-    public void deletarMissaoPorID( Long id){
-       missoesRepository.deleteById(id);
+    public void deletarMissaoPorID(Long id) {
+        missoesRepository.deleteById(id);
     }
+
+    // Alterar Missão por ID
+    public MissoesModel alterarMissaoPorId(Long id, MissoesModel atualizarMissao) {
+        if (missoesRepository.existsById(id)) {
+            atualizarMissao.setId(id);
+            return missoesRepository.save(atualizarMissao);
+        }
+        return null;
+    }
+
 }
