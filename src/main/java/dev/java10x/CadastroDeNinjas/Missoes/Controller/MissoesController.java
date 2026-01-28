@@ -2,6 +2,7 @@ package dev.java10x.CadastroDeNinjas.Missoes.Controller;
 
 import dev.java10x.CadastroDeNinjas.Missoes.Entity.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesService;
+import dev.java10x.CadastroDeNinjas.Missoes.dto.MissaoDTO;
 import dev.java10x.CadastroDeNinjas.Ninjas.Entity.NinjaModel;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class MissoesController {
 
     // GET -- Mandar uma requisição para criar as missões
     @PostMapping("/criar")
-    public MissoesModel criarMissao(@RequestBody MissoesModel missao) {
+    public MissaoDTO criarMissao(@RequestBody MissaoDTO missao) {
         return missoesService.criarMissao(missao);
     }
 
