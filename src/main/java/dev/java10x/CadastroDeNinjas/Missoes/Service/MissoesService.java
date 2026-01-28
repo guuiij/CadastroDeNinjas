@@ -2,7 +2,10 @@ package dev.java10x.CadastroDeNinjas.Missoes.Service;
 
 import dev.java10x.CadastroDeNinjas.Missoes.Entity.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.Repository.MissoesRepository;
+import dev.java10x.CadastroDeNinjas.Missoes.dto.MissaoDTO;
+import dev.java10x.CadastroDeNinjas.Missoes.mapper.MissaoMapper;
 import dev.java10x.CadastroDeNinjas.Ninjas.Entity.NinjaModel;
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +15,11 @@ import java.util.Optional;
 public class MissoesService {
 
     private MissoesRepository missoesRepository;
+    private MissaoMapper missaoMapper;
 
-    public MissoesService(MissoesRepository missoesRepository) {
+    public MissoesService(MissoesRepository missoesRepository, MissaoMapper missaoMapper) {
         this.missoesRepository = missoesRepository;
+        this.missaoMapper = missaoMapper;
     }
 
     // Listar todas as missões
@@ -29,8 +34,10 @@ public class MissoesService {
     }
 
     // Criar missões
-    public MissoesModel criarMissao(MissoesModel missao) {
-        return missoesRepository.save(missao);
+    public MissaoDTO criarMissao(MissaoDTO missaoDTO) {
+        MissoesModel missao = missaoMapper.map(missaoDTO);
+        missao = missoesRepository.save(missao);
+        return missaoMapper.map(missao);
     }
 
     // Deletar missão por ID
