@@ -18,11 +18,6 @@ public class MissoesController {
         this.missoesService = missoesService;
     }
 
-    @GetMapping("hello")
-    public String boasVindas() {
-        return "Essa é minha missao";
-    }
-
     // GET -- Mandar uma requisição para criar as missões
     @PostMapping("/criar")
     public MissaoDTO criarMissao(@RequestBody MissaoDTO missao) {
@@ -31,19 +26,19 @@ public class MissoesController {
 
     // GET -- Mandar uma requisição para mostrar todas as missões
     @GetMapping("/listar")
-    public List<MissoesModel> listarTodasAsMissoes() {
+    public List<MissaoDTO> listarTodasAsMissoes() {
         return missoesService.listarMissoes();
     }
 
     @GetMapping("/listar/{id}")
-    public MissoesModel listarMissaoPorId(@PathVariable Long id) {
+    public MissaoDTO listarMissaoPorId(@PathVariable Long id) {
         return missoesService.listarMissaoPorId(id);
 
     }
 
     // PUT -- Mandar uma requisição para alterar a missão
     @PutMapping("/alterar/{id}")
-    public MissoesModel alterarMissaoPorId(@PathVariable Long id, @RequestBody MissoesModel atualizarMissao) {
+    public MissaoDTO alterarMissaoPorId(@PathVariable Long id, @RequestBody MissaoDTO atualizarMissao) {
         return missoesService.alterarMissaoPorId(id, atualizarMissao);
     }
 
